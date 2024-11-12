@@ -24,7 +24,17 @@ export const apiConfig = createApi({
         },
       }),
     }),
+    signUp: builder.mutation<any, Request>({
+      query: (request) => ({
+        url: endpoints.auth.signUp,
+        method: "POST",
+        body: request,
+        headers: {
+          ApiKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = apiConfig;
+export const { useLoginMutation, useSignUpMutation } = apiConfig;
