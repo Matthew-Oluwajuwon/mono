@@ -110,7 +110,7 @@ const Input: React.FC<InputProps> = (props) => {
       </View>
       {message && inputProps?.value && (
         <Text
-          className={`text-red-500 absolute bottom-0 ${messageProps?.className}`}
+          className={`text-[#FF0000] absolute bottom-0 ${messageProps?.className}`}
           {...messageProps}
         >
           {message}

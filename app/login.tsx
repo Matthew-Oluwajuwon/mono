@@ -13,11 +13,21 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import useLogin from "@/hooks/useLogin";
 
 const Login = () => {
   const { top, bottom } = useSafeAreaInsets();
   const [isPasswordToggled, setIsPasswordToggled] = useState(false);
 
+  const {
+    handleSubmit,
+    setFieldTouched,
+    handleChange,
+    loading,
+    errors,
+    values,
+    touched,
+  } = useLogin()
   return (
     <TouchableWithoutFeedback className="flex-1" onPress={Keyboard.dismiss}>
       <View className="flex-1 relative bg-white">
@@ -54,12 +64,26 @@ const Login = () => {
           >
             <Input
               label="EMAIL"
-              inputProps={{ keyboardType: "email-address" }}
+              message={errors.email}
+              touched={touched.email}
+              inputProps={{
+                keyboardType: "email-address",
+                onChangeText: handleChange("email"),
+                onFocus: () => setFieldTouched("email", true),
+                onBlur: () => setFieldTouched("email", false),
+                value: values.email,
+              }}
             />
             <Input
               label="PASSWORD"
+              message={errors.password}
+              touched={touched.password}
               inputProps={{
                 secureTextEntry: !isPasswordToggled,
+                onChangeText: handleChange("password"),
+                onFocus: () => setFieldTouched("password", true),
+                onBlur: () => setFieldTouched("password", false),
+                value: values.password,
               }}
               suffix={
                 <Ionicons
@@ -70,7 +94,12 @@ const Login = () => {
                 />
               }
             />
-            <Button type="primary" className="absolute bottom-10 ml-5 w-full">
+            <Button
+              type="primary"
+              onPress={() => handleSubmit()}
+              className="absolute bottom-10 ml-5 w-full"
+              loading={loading}
+            >
               Login
             </Button>
           </View>

@@ -12,13 +12,15 @@ export const baseQueryWithReauth: (baseQuery: BaseQueryType) => BaseQueryType =
   };
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL,
+  baseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL,
   prepareHeaders: (headers) => {
     try {
-      const token = SecureStore.getItem("token");
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
+      // const apiKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY
+      // const token = SecureStore.getItem("token");
+      // if (token) {
+      //   headers.set("Authorization", `Bearer ${token}`);
+      // }
+      // headers.set("ApiKey", apiKey as string);
       return headers;
     } catch (error) {
       // Handle error retrieving token
