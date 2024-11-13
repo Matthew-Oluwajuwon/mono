@@ -39,7 +39,7 @@ const useSignUp = () => {
           showToast("error", "Error occurred", apiResponse?.msg);
         } else {
           // Show success toast and update Redux store if signUp is successful
-          showToast("success", "Success", "SignUp successful");
+          showToast("success", "Success", "Signup successful");
         //   dispatch(updateUserInfo(apiResponse)); // Update user information in the Redux store
           router.navigate("/"); // Navigate to the main screen upon successful signUp
         }

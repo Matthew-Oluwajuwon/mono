@@ -41,7 +41,7 @@ const useLogin = () => {
           // Show success toast and update Redux store if login is successful
           showToast("success", "Success", "Login successful");
           dispatch(updateUserInfo(apiResponse)); // Update user information in the Redux store
-          router.navigate("/(tabs)"); // Navigate to the main screen upon successful login
+          router.navigate("/(tabs)/(home)"); // Navigate to the main screen upon successful login
         }
       } catch (error: any) {
         // Show generic error toast if an error occurs during login
@@ -58,7 +58,8 @@ const useLogin = () => {
     setFieldTouched,   // Marks form fields as touched
     errors,            // Contains validation errors
     values,            // Contains current form values
-    touched,           // Tracks if fields have been interacted with
+    touched, 
+    isValid          // Tracks if fields have been interacted with
   } = useFormik({
     validationSchema,             // Attach validation schema for validation on form submit
     onSubmit: onLogin,            // Call onLogin when form is submitted
@@ -74,6 +75,7 @@ const useLogin = () => {
     errors,              // Form validation errors
     values,              // Current form values
     touched,             // Touched fields
+    isValid
   };
 };
 

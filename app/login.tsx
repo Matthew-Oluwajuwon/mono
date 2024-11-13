@@ -27,6 +27,7 @@ const Login = () => {
     errors,
     values,
     touched,
+    isValid
   } = useLogin();
   
   return (
@@ -99,6 +100,7 @@ const Login = () => {
               type="primary"
               onPress={() => handleSubmit()}
               className="absolute bottom-10 ml-5 w-full"
+              disabled={!isValid}
               loading={loading}
             >
               Login
